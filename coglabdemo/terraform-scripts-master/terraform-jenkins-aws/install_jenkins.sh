@@ -4,11 +4,12 @@
 sudo yum -y update
 
 echo "Install Java JDK 8"
-yum remove -y java
-yum install -y java-1.8.0-openjdk
-
+wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+sudo rpm -Uvh jdk-17_linux-x64_bin.rpm
 echo "Install Maven"
-yum install -y maven 
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo 
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
 
 echo "Install git"
 yum install -y git
